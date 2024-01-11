@@ -1,0 +1,61 @@
+<section class="ftco-section">
+  <div class="container">
+    <a href="/admin/uj-etel-letrehozasa">
+      <button class="btn btn-outline-success mb-4">Új létrehozása</button>
+    </a>
+    <div class="row">
+      <div class="col-md-12">
+
+      <?php foreach($params['dishes'] as $dish): ?>
+        <div class="row mb-3">
+          <div class="pricing-entry d-flex mr-2 ml-2 pt-2 pb-2 <?= (int)$dish['isActive'] ? '' : 'border rounded border-danger border-style-dotted'?> ">
+            <div class="desc pl-3">
+              <div class="d-flex text align-items-center">
+                <h3><span><?= $dish['name']?></span></h3>
+                <span class="price"><?= $dish['price']?> Ft</span>
+              </div>
+              <div class="d-block">
+                <p><?= $dish['description']?></p>
+              </div>
+              <?php if(!(int)$dish['isActive']): ?>
+                <span class="text-danger float-right pl-2 pr-2">
+                  Inaktív
+                </span>
+              <?php endif; ?>
+              <a href="/admin/etel-szerkesztese/<?= $dish['slug']?>">
+                <button class="btn btn-sm btn-outline-warning">Szerkesztés</button>
+              </a>
+              <form action="/delete-dish/<?= $dish['id']?>" method="POST" class="d-inline-block">
+                <button class="btn btn-sm btn-outline-danger">Törlés</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <?php endforeach;?>
+       
+        <div class="row mb-3">
+          <div class="pricing-entry d-flex mr-2 ml-2 pt-2 pb-2 ">
+            <div class="desc pl-3">
+              <div class="d-flex text align-items-center">
+                <h3><span>Meggylé</span></h3>
+                <span class="price">280 Ft</span>
+              </div>
+              <div class="d-block">
+                <p>
+                  Meggyből készült szénsavmentes üdítőital. </p>
+              </div>
+              <a href="/admin/etel-szerkesztese/meggyle">
+                <button class="btn btn-sm btn-outline-warning">Szerkesztés</button>
+              </a>
+              <form action="/delete-dish/23" method="POST" class="d-inline-block">
+                <button class="btn btn-sm btn-outline-danger">Törlés</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+
+      </div>
+    </div>
+  </div>
+</section>
