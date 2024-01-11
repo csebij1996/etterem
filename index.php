@@ -1,5 +1,11 @@
 <?php
 
+if($_SERVER['DEPLOYMENT_MODE'] === 'DEV') {
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);    
+}
+
 require './router.php';
 require './slugifier.php';
 
@@ -39,6 +45,7 @@ function homeHandler()
     $dishTypes = getDishTypes();
 
     foreach($dishTypes as $index => $dishType) {
+        $pdo = getConnection();
         $statement = $pdo->prepare('SELECT * FROM dishes WHERE dishTypeId = ?');
         $statement->execute([$dishType['id']]);
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
