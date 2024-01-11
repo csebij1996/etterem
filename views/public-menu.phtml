@@ -5,7 +5,7 @@
             <?php foreach($params['dishTypes'] as $dishType): ?>
             <?php if(count($dishType['dishes']) > 0): ?>
             <div class="col-md-6 mb-5 pb-3">
-                <h3 class="mb-5 heading-pricing ftco-animate fadeInUp ftco-animated"><?= $dishType['name']?></h3>
+                <h3 class="mb-5 heading-pricing ftco-animate fadeInUp ftco-animated text-warning"><?= $dishType['name']?></h3>
                 <?php foreach($dishType['dishes'] as $dish): ?>
                 <?php if((int)$dish['isActive']): ?>
                 <div class="pricing-entry d-flex ftco-animate fadeInUp ftco-animated">
