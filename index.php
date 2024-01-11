@@ -7,6 +7,9 @@ $method = $_SERVER["REQUEST_METHOD"];
 $parsed = parse_url($_SERVER['REQUEST_URI']);
 $path = $parsed['path'];
 
+
+
+
 // Útvonalak regisztrálása
 $routes = [
     // [method, útvonal, handlerFunction],
@@ -33,10 +36,7 @@ $handlerFunction($matchedRoute['vars']);
 function homeHandler()
 {
 
-    $pdo = getConnection();
-    $statement = $pdo->prepare('SELECT * FROM dishTypes');
-    $statement->execute([]);
-    $dishTypes = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $dishTypes = getDishTypes();
 
     foreach($dishTypes as $index => $dishType) {
         $statement = $pdo->prepare('SELECT * FROM dishes WHERE dishTypeId = ?');
